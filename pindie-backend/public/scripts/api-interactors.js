@@ -26,11 +26,16 @@ const postData = async (url, data) => {
       },
       body: JSON.stringify(data)
     });
-    if (response.status !== 200) {
-      throw new Error((await response.json()).message);
+
+    // Проверяем статус ответа
+    if (!response.ok) {
+      const errorData = await response.json(); // Пытаемся получить данные об ошибке
+      throw new Error(errorData.message || 'Ошибка при отправке данных');
     }
+
     return response;
   } catch (err) {
+    console.error('Ошибка при отправке данных:', err);
     return err;
   }
 };
