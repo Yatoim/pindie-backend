@@ -1,4 +1,4 @@
-const games = require("../models/game");
+const games = require("../models/games");
 
 const findAllGames = async (req, res, next) => {
   if(req.query["categories.name"]) { 
