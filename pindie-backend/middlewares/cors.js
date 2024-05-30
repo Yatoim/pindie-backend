@@ -1,5 +1,5 @@
 // Список сайтов, которым мы разрешаем обращаться к серверу
-const allowedCors = ["https://pindie-test-backend.nomorepartiesco.ru/"];
+const allowedCors = ["https://pindie-test-backend.nomorepartiesco.ru/admin/dashboard"];
   
   function cors(req, res, next) {
       const { origin } = req.headers; // Смотрим, кто стучится к серверу
