@@ -1,5 +1,5 @@
 const users = require('../models/user');
-const bcryptjs = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const findAllUsers = async (req, res, next) => {
   req.usersArray = await users.find({});
   console.log(req.usersArray);
@@ -68,8 +68,8 @@ const checkEmptyNameAndEmail = async (req, res, next) => {
 
 const hashPassword = async (req, res, next) => {
   try {
-    const salt = await bcryptjs.genSalt(10);
-    const hash = await bcryptjs.hash(req.body.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(req.body.password, salt);
     req.body.password = hash;
     next();
   } catch (error) {
