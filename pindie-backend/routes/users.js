@@ -1,7 +1,7 @@
 // Создаём роут для запросов пользователей 
 const usersRouter = require('express').Router();
 const {findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, hashPassword} = require('../middlewares/users');
-const {sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated, sendUserDeleted, sendMe} = require('../controllers/users');
+const {sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated, sendUserDeleted, sendMe} = require('../controllers/user');
 const {checkAuth, checkCookiesJWT} = require("../middlewares/auth.js");
 
 usersRouter.get('/users', findAllUsers, sendAllUsers);
