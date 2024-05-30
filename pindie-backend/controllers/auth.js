@@ -28,9 +28,10 @@ const sendDashboard = (req, res) => {
 };
 
 const sendIndex = (req, res) => {
-  if (req.cookies.jwt) {
+  if (req.headers.authorization) {
     try {
-      jwt.verify(req.cookies.jwt, "some-secret-key");
+      const token = req.headers.authorization.replace("Bearer ", "");
+      jwt.verify(token, "some-secret-key");
       return res.redirect("/admin/dashboard");
     } catch (err) {
       res.sendFile(path.join(__dirname, "../public/index.html"));
