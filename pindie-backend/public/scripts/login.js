@@ -25,9 +25,34 @@ form &&
     }
   });
 
-const logoutButton = document.querySelector(".logout-button");
-logoutButton &&
-  logoutButton.addEventListener("click", async () => {
+logoutButton.addEventListener("click", async () => {
+  try {
+    const response = await fetch('/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getJWTFromCookie()}` 
+      }
+    });
+
+    if (response.status !== 200) {
+  throw new Error((await response.json()).message);
+}
+const result = await response.json();
+document.cookie = `jwt=${result.jwt}`;
+
+// Проверка токена
+if (result.jwt) {
+  window.location.href = "/admin/dashboard";
+} else {
+  // Обработка ошибки - токен не получен
+  showTooltip('Ошибка при авторизации');
+}
+    // Удаляем куки после успешного выхода
     document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href = "/";
-  });
+  } catch (error) {
+    console.error('Ошибка при выходе:', error);
+    // Вывод сообщения об ошибке пользователю
+  }
+});
