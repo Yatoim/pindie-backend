@@ -6,7 +6,7 @@ form &&
     event.preventDefault();
     const formData = new FormData(form);
     try {
-      const response = await fetch("/auth/login", {
+      const response = await fetch("/api/auth/login", {
         headers: {
           "Content-Type": "application/json",
         },
