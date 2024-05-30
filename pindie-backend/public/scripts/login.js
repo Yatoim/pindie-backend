@@ -1,5 +1,4 @@
 import { showTooltip } from "./dom-creators.js";
-import bcrypt from 'bcrypt';
 const form = document.querySelector(".auth-form");
 form &&
   form.addEventListener("submit", async event => {
