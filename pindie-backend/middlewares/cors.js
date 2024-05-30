@@ -1,5 +1,5 @@
 // Список сайтов, которым мы разрешаем обращаться к серверу
-const allowedCors = ["https://pindie-moy-proect.nomorepartiesco.ru/"];
+const allowedCors = ["https://pindie-moy-proect.nomorepartiesco.ru"];
   
   function cors(req, res, next) {
       const { origin } = req.headers; // Смотрим, кто стучится к серверу
